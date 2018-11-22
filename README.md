@@ -1,3 +1,4 @@
+https://github.com/rails-girls-to/rails-5-api 
 # Starting a Rails 5 API
 
 ## Get started!
@@ -23,7 +24,7 @@ Scaffold your first model and its corresponding controller and routes:
 bin/rails generate scaffold Neighbourhood name:string num_businesses:integer home_price:decimal
 ```
 
-Rails will create a database migration, a model file for Neighbourhood, tests for the model, 
+Rails will create a database migration, a model file for Neighbourhood, tests for the model,
 new routes for neighbourhoods, a neighbourhoods controller, and tests for the controller.
 ```
       invoke  active_record
@@ -128,7 +129,7 @@ bin/rails routes
                           DELETE /neighbourhoods/:id(.:format)                 neighbourhoods#destroy
 ```
 
-To see a listing of all our neighbourhoods, we can send an HTTP GET request to 
+To see a listing of all our neighbourhoods, we can send an HTTP GET request to
 the `/neighbourhoods` URI in our app.
 
 But first, we need to start up our server:

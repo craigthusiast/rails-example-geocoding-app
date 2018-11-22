@@ -5,7 +5,38 @@ class NeighbourhoodsController < ApplicationController
   def index
     @neighbourhoods = Neighbourhood.all
 
+    # URL example http://localhost:3000/neighbourhoods?max_home_price=400000&min_home_price=300000&ranked_by=home_price
+    if params[:max_home_price].present? # URL example http://localhost:3000/neighbourhoods?max_home_price=400000
+      @neighbourhoods = @neighbourhoods.where('home_price <= ?', params[:max_home_price])
+    end
+
+    if params[:min_home_price].present? # URL example http://localhost:3000/neighbourhoods?max_home_price=400000
+      @neighbourhoods = @neighbourhoods.where('home_price >= ?', params[:min_home_price])
+    end
+
+    if params[:ranked_by].present?  # URL example http://localhost:3000/neighbourhoods?ranked_by=name
+      @neighbourhoods = @neighbourhoods.order(params[:ranked_by].to_sym => :desc)
+    end
+
+    if params[:coords].present?
+      # Unlike the queries we saw earlier, the line below overwrites
+      # the @neighbourhoods variable. It will return only the nearest
+      # neighbourhood, without combining with the other filters.
+      # URL example http://localhost:3000/neighbourhoods?coords=[43.6580377,-79.483626]
+      @neighbourhoods = Location.nearest_neighbourhood(params[:coords])
+      # binding.pry
+    end
+
+
     render json: @neighbourhoods
+
+    # render json: JSON.pretty_generate(@neighbourhoods)
+    # respond_to do |format|
+    #   # type http://localhost:3000/neighbourhoods into browser bar to render the format.json below
+    #   # OR use regular link_to by adding defaults: { format: 'json' } to the route
+    #   format.json { render json: JSON.pretty_generate(@neighbourhoods) }
+    # end
+
   end
 
   # GET /neighbourhoods/1
