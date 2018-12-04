@@ -4,10 +4,7 @@ class Location < ApplicationRecord
   reverse_geocoded_by :latitude, :longitude
   after_validation :reverse_geocode
 
-  # def self.nearest_neighbourhood(coords)
-  #   # self.near(coords, 2, units: :km).first.neighbourhood # returns first location's neighbourhood
-  #   # self.near(coords, 2, units: :km).first(2) # returns an array containing first 2 locations
-  #
+  # def self.nearest_neighbourhood(coords)  # this is a nice way of returning a simple list of the names of the 5 closest neighbourhoods
   #   nearest_neighbourhoods = self.near(coords, 2, units: :km).first(5) # array of first 5 locations
   #   hoods = []
   #   nearest_neighbourhoods.each do |loc|

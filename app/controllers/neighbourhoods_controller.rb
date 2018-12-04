@@ -22,7 +22,7 @@ class NeighbourhoodsController < ApplicationController
       # Unlike the queries we saw earlier, the line below overwrites
       # the @neighbourhoods variable. It will return only the nearest
       # neighbourhood, without combining with the other filters.
-      # URL example http://localhost:3000/neighbourhoods?coords=[43.6580377,-79.483626]
+      # URL example http://localhost:3000/neighbourhoods?near=43.6665196,-79.4882084
       @neighbourhoods = Location.nearest_neighbourhood(params[:near])
       # binding.pry
     end
